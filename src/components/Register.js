@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import logo from '../pictures/logo.png';
 import { useNavigate } from 'react-router-dom';
+
+import GoogleButton from 'react-google-button';
 import { useAuth } from '../context/UserAuthContext';
 
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const navigate = useNavigate();
-
+  const [name, setName] = useState();
+  const [phone, setPhone] = useState();
+  const [role, setRole] = useState();
+  
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
   const [loading, setLoading] = React.useState(false);
 
-  const { login } = useAuth();
+  const { signup } = useAuth();
 
-  const handleLogin = async (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
     console.log({
       email,
@@ -26,8 +30,8 @@ const Login = () => {
       setError('');
       setSuccess('');
       setLoading(true);
-      await login(email, password);
-      setSuccess('Good Login');
+      await signup(email, password, name);
+      setSuccess('You can login now!');
     } catch (e) {
       setError(e.message);
     }
@@ -36,6 +40,8 @@ const Login = () => {
     
   };
 
+
+  const navigate = useNavigate();
   return (
     <div className="w-screen h-screen grid grid-cols-4">
         <div className='m-auto'>
@@ -43,43 +49,70 @@ const Login = () => {
             <img className='w-56' src={logo} alt='logo'/>
           </div>
           <h2 className='mb-4 ml-5 test-xl font-sans text-white'>
-            You don't have an accout?
+            Already have an account?
           </h2>
-          <button className='ml-12 bg-white text-primary rounded-xl w-32 hover:bg-white/80' onClick={() => navigate("/")}>
-            Sign Up
+          <button className='ml-12 bg-white text-primary rounded-xl w-32 hover:bg-white/80' onClick={() => navigate("/login")}>
+            Sign In
           </button>
         </div>
         <div className='m-2 col-span-3 bg-secondary flex'>
+          
           <div className='m-auto flex flex-col'>
             { error && 
-          
-              <div class="bg-red-100 border-t-4 border-red-400 rounded-b text-red-900 px-4 py-3 shadow-md" role="alert">
+            
+              <div class="mt-2 bg-red-100 border-t-4 border-red-400 rounded-b text-red-900 px-4 py-3 shadow-md" role="alert">
                 <p class="font-bold">Something went wrong</p>
                 <p class="text-sm">{error}</p>
               </div>
-            } 
-            <h1 className='mt-4 mx-auto text-3xl font-sans font-bold text-primary'>
-              Sign In
+            }
+            { success && 
+            
+              <div class="mt-2 bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+                <p class="font-bold">Registration Succesful</p>
+                <p class="text-sm">{success}</p>
+              </div>
+            }
+            <h1 className='mx-auto mt-4 text-3xl font-sans font-bold text-primary'>
+              Sign Up
             </h1>
-            <form className='my-12 mx-auto ' onSubmit={handleLogin}>
-              
+            <form className='my-4 mx-auto ' noValidate onSubmit={handleRegister}>
+              <div className='mb-4'>
+                <label className='block text-primary text-sm mb-2' for="name">
+                  Full Name
+                </label>
+                <input class="form" id="name" placeholder='Enter your real name' onChange={e => setName(e.target.value)}/>
+              </div>
+              <div className='mb-4'>
+                <label className='block text-primary text-sm mb-2' for="phone">
+                  Phone Number
+                </label>
+                <input class="form" id="phone" placeholder='Enter your phone number' onChange={e => setPhone(e.target.value)}/>
+              </div>
               <div className='mb-4'>
                 <label className='block text-primary text-sm mb-2' for="email">
                   Email
                 </label>
                 <input class="form" id="email" type="email" placeholder='Enter your email' onChange={e => setEmail(e.target.value)}/>
               </div>
-              <div className='mb-16'>
+              <div className='mb-4'>
                 <label className='block text-primary text-sm mb-2' for="password">
                   Password
                 </label>
                 <input class="form appearance-none" id="password" type="password" placeholder='Enter your password' onChange={e => setPassword(e.target.value)}/>
               </div>
-              
+              <div className='mb-6'>
+                <label className='block text-primary text-sm mb-2' for="role">
+                  Role
+                </label>
+                <select class="form" id="role" placeholder='Enter your real name' onChange={e => setRole(e.target.value)}>
+                  <option>Host</option>
+                  <option>Guest</option>
+                </select>
+              </div>
 
-              <div className='ml-16 mb-4 mt-16'>
+              <div className='ml-16 mb-4'>
                 <button className='bg-primary text-white rounded-xl w-28 hover:bg-primary/80'>
-                  Sign In
+                  Sign Up
                 </button>
               </div>
               <div className='ml-7'>
@@ -96,4 +129,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register
