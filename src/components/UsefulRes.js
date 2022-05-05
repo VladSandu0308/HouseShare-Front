@@ -1,14 +1,16 @@
 import React from 'react'
 import logo from '../pictures/logo.png';
 import Info from './Info';
+import { useNavigate } from 'react-router-dom';
 
 const UsefulRes = () => {
+  const navigate = useNavigate();
   return (
     <div className='w-screen h-screen grid grid-rows-15'>
   
       <div className='flex justify-between'>
-        <div className='w-8 h-8 my-auto ml-4 relative top-5 rounded-full bg-secondary shadow-3xl flex'>
-          <button className='w-6 h-6 m-auto rounded-full bg-[#FCFFFB] hover:bg-[#FCFFFB]/80 transition-colors duration-300'>
+        <div className='w-12 h-12 my-auto ml-4 relative top-5 rounded-full bg-secondary shadow-3xl flex'>
+          <button className='w-9 h-9 m-auto rounded-full bg-[#FCFFFB] hover:bg-[#FCFFFB]/80 transition-colors duration-300' onClick={() => navigate("/home")}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 m-auto" fill="none" viewBox="0 0 26 24" stroke="#0B5351" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>

@@ -6,20 +6,3 @@
   @apply bg-white box-border border rounded border-solid border-primary shadow-md w-60 focus:outline-none;
 }
 
-.accordionElement {
-  @apply 
-  accordion-button
-  collapsed
-  relative
-  flex
-  items-center
-  w-full
-  py-4
-  px-5
-  text-base text-gray-800 text-left
-  bg-white
-  border-0
-  rounded-none
-  transition
-  focus:outline-none;
-}
