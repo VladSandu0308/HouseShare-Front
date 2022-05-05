@@ -28,6 +28,7 @@ const Login = () => {
       setLoading(true);
       await login(email, password);
       setSuccess('Good Login');
+      navigate("/home");
     } catch (e) {
       setError(e.message);
     }
@@ -45,7 +46,7 @@ const Login = () => {
           <h2 className='mb-4 ml-5 test-xl font-sans text-white'>
             You don't have an accout?
           </h2>
-          <button className='ml-12 bg-white text-primary rounded-xl w-32 hover:bg-white/80' onClick={() => navigate("/")}>
+          <button className='ml-12 bg-white text-primary rounded-xl w-32 hover:bg-white/80 transition-colors duration-300' onClick={() => navigate("/")}>
             Sign Up
           </button>
         </div>
@@ -78,7 +79,7 @@ const Login = () => {
               
 
               <div className='ml-16 mb-4 mt-16'>
-                <button className='bg-primary text-white rounded-xl w-28 hover:bg-primary/80'>
+                <button className='bg-primary text-white rounded-xl w-28 hover:bg-primary/80 transition-colors duration-300'>
                   Sign In
                 </button>
               </div>

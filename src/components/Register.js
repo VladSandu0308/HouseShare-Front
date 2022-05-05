@@ -51,7 +51,7 @@ const Register = () => {
           <h2 className='mb-4 ml-5 test-xl font-sans text-white'>
             Already have an account?
           </h2>
-          <button className='ml-12 bg-white text-primary rounded-xl w-32 hover:bg-white/80' onClick={() => navigate("/login")}>
+          <button className='ml-12 bg-white text-primary rounded-xl w-32 hover:bg-white/80 transition-colors duration-300' onClick={() => navigate("/login")}>
             Sign In
           </button>
         </div>
@@ -111,7 +111,7 @@ const Register = () => {
               </div>
 
               <div className='ml-16 mb-4'>
-                <button className='bg-primary text-white rounded-xl w-28 hover:bg-primary/80'>
+                <button className='bg-primary text-white rounded-xl w-28 hover:bg-primary/80 transition-colors duration-300'>
                   Sign Up
                 </button>
               </div>
