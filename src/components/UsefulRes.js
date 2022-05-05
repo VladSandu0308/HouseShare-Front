@@ -1,10 +1,13 @@
 import React from 'react'
 import logo from '../pictures/logo.png';
 import Info from './Info';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import BookingsInProgress from './BookingsInProgress';
 
 const UsefulRes = () => {
   const navigate = useNavigate();
+  const {state} = useLocation();
+
   return (
     <div className='w-screen h-screen grid grid-rows-15'>
   
@@ -18,7 +21,7 @@ const UsefulRes = () => {
         </div>
 
         <div className='my-auto'>
-          <span class="font-semibold text-xl tracking-tight text-[#FCFFFB] mr-6">Placeholder</span>
+          <span class="font-semibold text-lg tracking-tight text-[#FCFFFB] mr-6">{state.name}</span>
         </div>
       </div>
 
@@ -27,21 +30,18 @@ const UsefulRes = () => {
           <div className="mx-auto text-white relative top-8">
             <img className='w-16' src={logo} alt='logo'/>
           </div>
-          <div className='mx-16 bg-primary pt-10 p-6 pb-8'>
-            <Info />
+          <div className='mx-16 bg-primary pt-12 p-6 pb-8'>
+            {/* To Add if Role */}
+            {state.name == "Useful Information" ?
+              (<Info />) :
+              (<BookingsInProgress />)
+            }
+
+            
 
           </div>
         </div>
-        {/* <div class="mx-auto text-white mr-6 ml-6">
-          <img className='w-8' src={logo} alt='logo'/>
-        </div>
-        <div className='m-auto flex'>
-          
-          <div className='m-auto pt-8 p-4 bg-primary'>
-              Map placeholder
-            
-          </div>
-        </div> */}
+        {}
 
       </div>
     </div>

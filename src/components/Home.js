@@ -55,7 +55,7 @@ const Home = () => {
           <h1 className='mb-4 mx-auto test-3xl font-bold font-sans text-white'>
             Do you need help and don’t know where to find it?
           </h1>
-          <button className='mx-auto bg-secondary text-white rounded-xl w-60 h-12 rounded-full hover:bg-secondary/80 transition-colors duration-300' onClick={() => navigate("/usefulInfo")}>
+          <button className='mx-auto bg-secondary text-white rounded-xl w-60 h-12 rounded-full hover:bg-secondary/80 transition-colors duration-300' onClick={() => navigate("/usefulInfo", {state: {name: "Useful Information"}})}>
             See useful resources
           </button>
         </div>
