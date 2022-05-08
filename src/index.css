@@ -6,3 +6,7 @@
   @apply bg-white box-border border rounded border-solid border-primary shadow-md w-60 focus:outline-none;
 }
 
+.pagination {
+  @apply relative block mt-4 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-white hover:text-gray-800 focus:shadow-none ;
+}
+

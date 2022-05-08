@@ -30,7 +30,7 @@ const UsefulRes = () => {
           <div className="mx-auto text-white relative top-8">
             <img className='w-16' src={logo} alt='logo'/>
           </div>
-          <div className='mx-16 bg-primary pt-12 p-6 pb-8'>
+          <div className='mx-16 bg-primary pt-12 p-6 pb-4'>
             {/* To Add if Role */}
             {state.name == "Useful Information" ?
               (<Info />) :

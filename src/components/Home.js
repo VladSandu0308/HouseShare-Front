@@ -16,15 +16,15 @@ const Home = () => {
           </div>
           <div class="w-full block flex-grow flex items-center w-auto">
             <div class="text-sm flex-grow">
-              <a href="#responsive-header" class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300">
-                Docs
-              </a>
-              <a href="#responsive-header" class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300">
-                Examples
-              </a>
-              <a href="#responsive-header" class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70  transition-colors duration-300">
-                Blog
-              </a>
+              <button class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300">
+                Map
+              </button>
+              <button class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300">
+                Bookings
+              </button>
+              <button class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70  transition-colors duration-300" onClick={() => navigate("/progress", {state: {name: "Bookings In Progress"}})}>
+                In Progress
+              </button>
             </div>
             <div className='mr-4'>
               <span class="font-semibold text-xl tracking-tight text-[#FCFFFB] mr-6">Home</span>

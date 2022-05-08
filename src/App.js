@@ -7,6 +7,7 @@ import Register from './components/Register';
 import PrivateRoute from './components/PrivateRoute';
 import Home from './components/Home';
 import UsefulRes from './components/UsefulRes';
+import BookingsInProgress from './components/BookingsInProgress';
 
 function App() {
   return (
@@ -24,6 +25,11 @@ function App() {
             <Route path="/usefulInfo" element={
               <PrivateRoute>
                 <UsefulRes />
+              </PrivateRoute>
+            }/>
+            <Route path="/progress" element={
+              <PrivateRoute>
+                <UsefulRes name={"Bookings In Progress"} />
               </PrivateRoute>
             }/>
           </Routes>
