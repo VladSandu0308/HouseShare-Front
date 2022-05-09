@@ -3,10 +3,14 @@ import logo from '../pictures/logo.png';
 import Info from './Info';
 import { useLocation, useNavigate } from 'react-router-dom';
 import BookingsInProgress from './BookingsInProgress';
+import MyBookings from './Helper/MyBookings';
+import PastBookings from './Helped/PastBookings';
 
 const UsefulRes = () => {
   const navigate = useNavigate();
   const {state} = useLocation();
+
+  const pageName = state.name;
 
   return (
     <div className='w-screen h-screen grid grid-rows-15'>
@@ -25,8 +29,8 @@ const UsefulRes = () => {
         </div>
       </div>
 
-      <div className='bg-secondary row-span-13 flex '>
-        <div className='m-auto w-screen flex flex-col'>
+      <div className='bg-secondary row-span-13 flex pb-2'>
+        <div className='my-auto w-screen flex flex-col'>
           <div className="mx-auto text-white relative top-8">
             <img className='w-16' src={logo} alt='logo'/>
           </div>
@@ -34,15 +38,28 @@ const UsefulRes = () => {
             {/* To Add if Role */}
             {state.name == "Useful Information" ?
               (<Info />) :
-              (<BookingsInProgress />)
+              <>
+                {pageName == "Bookings In Progress" ? (
+                  <BookingsInProgress role={"Helped"} />
+                ) : <> 
+                  {
+                    pageName == "My Bookings" ? (
+                      <MyBookings />
+                    ) : (
+                      <PastBookings />
+                    )
+                  }
+                </>
+                
+              }
+              </>
+                
             }
 
             
 
           </div>
         </div>
-        {}
-
       </div>
     </div>
   )

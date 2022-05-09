@@ -9,6 +9,7 @@ import Home from './components/Home';
 import UsefulRes from './components/UsefulRes';
 import BookingsInProgress from './components/BookingsInProgress';
 import ResetPasword from './components/ResetPasword';
+import MapPage from './components/MapPage';
 
 function App() {
   return (
@@ -31,7 +32,17 @@ function App() {
             }/>
             <Route path="/progress" element={
               <PrivateRoute>
-                <UsefulRes name={"Bookings In Progress"} />
+                <UsefulRes />
+              </PrivateRoute>
+            }/>
+            <Route path="/bookings" element={
+              <PrivateRoute>
+                <UsefulRes />
+              </PrivateRoute>
+            }/>
+            <Route path="/map" element={
+              <PrivateRoute>
+                <MapPage />
               </PrivateRoute>
             }/>
           </Routes>

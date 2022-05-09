@@ -18,9 +18,17 @@ const Pagination = ({ perPage, totalPosts, paginate, currentPage }) => {
             </li>
           {pageNumbers.map(number => (
             <li key={number} className='page-item'>
-              <button onClick={() => paginate(number)} className='page-link pagination focus:bg-secondary'>
-                {number}
-              </button>
+              { currentPage === number ? (
+                <button onClick={() => paginate(number)} className='page-link pagination bg-secondary'>
+                  {number}
+                </button>
+              ) : (
+                <button onClick={() => paginate(number)} className='page-link pagination'>
+                  {number}
+                </button>
+              )
+
+              }    
             </li>
           ))}
 

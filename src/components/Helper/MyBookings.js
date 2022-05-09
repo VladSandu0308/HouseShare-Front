@@ -1,10 +1,11 @@
+
 import React, { useState } from 'react'
 import {format} from 'react-string-format';
-import BipHelped from './Helped/BipHelped';
-import BipHelper from './Helper/BipHelper';
-import Pagination from './Pagination';
+import Pagination from '../Pagination';
+import garbage from '../../pictures/garbage.png';
 
-const BookingsInProgress = ({role}) => {
+
+const MyBookings = () => {
   const [bookings, setBokings] = useState([{id: 1}, {id: 2},{id: 3}, {id: 4},{id: 5}, {id: 2},{id: 1}, {id: 2},]);
   const [perPage, setPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,13 +32,23 @@ const BookingsInProgress = ({role}) => {
               </h2>
               <div id={format('id{0}', book.id)} class="accordion-collapse collapse" aria-labelledby="headingOne"
                 data-bs-parent="#accordionExample">
-                  {
-                    role === "Helper" ? (
-                      <BipHelper />
-                    ) : (
-                      <BipHelped />
-                    )
-                  }
+                  <div class="accordion-body py-2 px-5 text-sm flex justify-between">
+      
+                    <div className='flex flex-col ml-4 my-auto gap-1'>
+                        
+                        <h5>Start Date: </h5>
+                        <h5>End Date: </h5>
+                    </div>
+                    <div className='flex flex-col my-auto gap-1'>
+                        <h5>Location: </h5>
+                        <h5>Phone: </h5>
+                    </div>
+                    <div className='flex flex-row gap-4 my-auto mr-4'>
+                      <button className='w-9 h-9 m-auto rounded-full bg-secondary hover:bg-secondary/80 transition-colors duration-300' onClick={() => {}}>
+                        <img className='m-auto w-5' src={garbage} />
+                      </button>
+                    </div>
+                  </div>
                 
               </div>
             </div>
@@ -46,8 +57,7 @@ const BookingsInProgress = ({role}) => {
       </div>
       <Pagination perPage={perPage} totalPosts={bookings.length} paginate={paginate} currentPage={currentPage}/>
     </div>
-    
   )
 }
 
-export default BookingsInProgress
+export default MyBookings

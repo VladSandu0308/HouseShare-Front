@@ -17,6 +17,10 @@ const Home = () => {
     }
   }
 
+  {//To modify after backend role
+  }
+  const bookingsName = "My Bookings"
+
   return (
     <div className='w-screen h-screen grid grid-rows-15'>
       <div className='flex flex-row'>
@@ -26,10 +30,10 @@ const Home = () => {
           </div>
           <div class="w-full block flex-grow flex items-center w-auto">
             <div class="text-sm flex-grow">
-              <button class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300">
+              <button class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300" onClick={() => navigate("/map", {state: {role: "Helper"}})}>
                 Map
               </button>
-              <button class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300">
+              <button class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300" onClick={() => navigate("/bookings", {state: {name: bookingsName}})}>
                 Bookings
               </button>
               <button class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70  transition-colors duration-300" onClick={() => navigate("/progress", {state: {name: "Bookings In Progress"}})}>
@@ -54,7 +58,7 @@ const Home = () => {
 
         <div className='flex'>
           <div className='m-auto'>
-            <button className='mr-16 bg-[#FCFFFB] text-primary rounded-xl w-60 h-12 rounded-full hover:bg-[#FCFFFB]/80  transition-colors duration-300'>
+            <button className='mr-16 bg-[#FCFFFB] text-primary rounded-xl w-60 h-12 rounded-full hover:bg-[#FCFFFB]/80  transition-colors duration-300' onClick={() => navigate("/map", {state: {role: "Helper"}})}>
               See Map
             </button>
           </div>
