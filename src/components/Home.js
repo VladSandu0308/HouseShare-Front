@@ -1,12 +1,22 @@
-import { getAuth } from 'firebase/auth'
+import { useAuth } from '../context/UserAuthContext';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import logo from '../pictures/logo.png';
 
 const Home = () => {
-  const {currentUser} = getAuth();
+  const {currentUser, logout} = useAuth();
   const navigate = useNavigate();
   console.log(currentUser);
+
+  async function handleLogout() {
+
+    try {
+      await logout()
+      navigate("/");
+    } catch {
+    }
+  }
+
   return (
     <div className='w-screen h-screen grid grid-rows-15'>
       <div className='flex flex-row'>
@@ -28,7 +38,7 @@ const Home = () => {
             </div>
             <div className='mr-4'>
               <span class="font-semibold text-xl tracking-tight text-[#FCFFFB] mr-6">Home</span>
-              <button className='text-md mr-2 bg-[#FCFFFB] text-primary rounded-xl px-4 py-0.5 rounded-full hover:bg-[#FCFFFB]/80  transition-colors duration-300'>Log Out</button>
+              <button className='text-md mr-2 bg-[#FCFFFB] text-primary rounded-xl px-4 py-0.5 rounded-full hover:bg-[#FCFFFB]/80  transition-colors duration-300' onClick={() => logout().then(navigate("/"))}>Log Out</button>
             </div>
           </div>
         </nav>

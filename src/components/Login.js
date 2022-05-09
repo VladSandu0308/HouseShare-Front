@@ -62,7 +62,7 @@ const Login = () => {
             <h1 className='mt-4 mx-auto text-3xl font-sans font-bold text-primary'>
               Sign In
             </h1>
-            <form className='my-12 mx-auto ' onSubmit={handleLogin}>
+            <form className='my-8 mx-auto ' onSubmit={handleLogin}>
               
               <div className='mb-4'>
                 <label className='block text-primary text-sm mb-2' for="email">
@@ -70,15 +70,17 @@ const Login = () => {
                 </label>
                 <input class="form" id="email" type="email" placeholder='Enter your email' onChange={e => setEmail(e.target.value)}/>
               </div>
-              <div className='mb-16'>
+              <div className='mb-2'>
                 <label className='block text-primary text-sm mb-2' for="password">
                   Password
                 </label>
                 <input class="form appearance-none" id="password" type="password" placeholder='Enter your password' onChange={e => setPassword(e.target.value)}/>
               </div>
               
-
-              <div className='ml-16 mb-4 mt-16'>
+              <button className='mb-10 ml-4 text-sm underline font-sans text-primary hover:text-primary/80' onClick={() => navigate("/reset")}>
+                Have you forgot your password?
+              </button>
+              <div className='ml-16 mb-4'>
                 <button className='bg-primary text-white rounded-xl w-28 hover:bg-primary/80 transition-colors duration-300'>
                   Sign In
                 </button>
