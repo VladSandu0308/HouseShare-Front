@@ -3,11 +3,14 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import logo from '../pictures/logo.png';
 import CustomMap from './Map';
+import useUser from '../hooks/useUser';
 
 const Home = () => {
   const {currentUser, logout} = useAuth();
   const navigate = useNavigate();
   console.log(currentUser);
+
+  const { user } = useUser();
 
   async function handleLogout() {
 
@@ -18,9 +21,8 @@ const Home = () => {
     }
   }
 
-  {//To modify after backend role
-  }
-  const bookingsName = "Past Bookings"
+
+  const bookingsName = user.role === "Helped" ? "Past Bookings" : "My Bookings";
 
   return (
     <div className='w-screen h-screen grid grid-rows-15'>
@@ -31,7 +33,7 @@ const Home = () => {
           </div>
           <div className="w-full block flex-grow flex items-center w-auto">
             <div className="text-sm flex-grow">
-              <button className="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300" onClick={() => navigate("/map", {state: {role: "Helped"}})}>
+              <button className="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300" onClick={() => navigate("/map", {state: {role: user.role}})}>
                 Map
               </button>
               <button className="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300" onClick={() => navigate("/bookings", {state: {name: bookingsName}})}>
@@ -55,7 +57,7 @@ const Home = () => {
 
         <div className='flex'>
           <div className='m-auto'>
-            <button className='mr-16 bg-[#FCFFFB] text-primary rounded-xl w-60 h-12 rounded-full hover:bg-[#FCFFFB]/80  transition-colors duration-300' onClick={() => navigate("/map", {state: {role: "Helped"}})}>
+            <button className='mr-16 bg-[#FCFFFB] text-primary rounded-xl w-60 h-12 rounded-full hover:bg-[#FCFFFB]/80  transition-colors duration-300' onClick={() => navigate("/map", {state: {role: user.role}})}>
               See Map
             </button>
           </div>

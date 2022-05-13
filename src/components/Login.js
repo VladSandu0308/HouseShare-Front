@@ -3,6 +3,9 @@ import logo from '../pictures/logo.png';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/UserAuthContext';
 
+import { server } from '../services/axios';
+import useUser from '../hooks/useUser';
+
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -12,6 +15,8 @@ const Login = () => {
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+
+  const { setUser } = useUser();
 
   const { login, google } = useAuth();
 
@@ -27,6 +32,7 @@ const Login = () => {
       setSuccess('');
       setLoading(true);
       await login(email, password);
+      await server.post("/login", {email}).then(user => setUser(user.data));
       setSuccess('Good Login');
       navigate("/home");
     } catch (e) {

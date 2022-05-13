@@ -12,7 +12,7 @@ const Register = () => {
   const [password, setPassword] = useState();
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
-  const [role, setRole] = useState();
+  const [role, setRole] = useState("Helper");
   
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
@@ -24,7 +24,9 @@ const Register = () => {
     event.preventDefault();
     console.log({
       email,
-      password
+      phone,
+      name,
+      role
     });
 
     try {
@@ -32,14 +34,15 @@ const Register = () => {
       setSuccess('');
       setLoading(true);
       await signup(email, password, name);
-      // await server.post("/register", {
-      //   email, phone, name, role
-      // });
+      await server.post("/register", {
+        email, phone, name, role
+      });
       setSuccess('You can login now!');
       navigate("/login");
 
     } catch (e) {
       setError(e.message);
+      console.log("Error: " + e);
     }
 
     setLoading(false);
