@@ -2,6 +2,7 @@ import { useAuth } from '../context/UserAuthContext';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import logo from '../pictures/logo.png';
+import CustomMap from './Map';
 
 const Home = () => {
   const {currentUser, logout} = useAuth();
@@ -19,29 +20,29 @@ const Home = () => {
 
   {//To modify after backend role
   }
-  const bookingsName = "My Bookings"
+  const bookingsName = "Past Bookings"
 
   return (
     <div className='w-screen h-screen grid grid-rows-15'>
       <div className='flex flex-row'>
-        <nav class="basis-full flex items-center flex-wrap">
-          <div class="flex items-center flex-shrink-0 text-white mr-6 ml-6">
+        <nav className="basis-full flex items-center flex-wrap">
+          <div className="flex items-center flex-shrink-0 text-white mr-6 ml-6">
             <img className='w-8' src={logo} alt='logo'/>
           </div>
-          <div class="w-full block flex-grow flex items-center w-auto">
-            <div class="text-sm flex-grow">
-              <button class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300" onClick={() => navigate("/map", {state: {role: "Helper"}})}>
+          <div className="w-full block flex-grow flex items-center w-auto">
+            <div className="text-sm flex-grow">
+              <button className="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300" onClick={() => navigate("/map", {state: {role: "Helped"}})}>
                 Map
               </button>
-              <button class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300" onClick={() => navigate("/bookings", {state: {name: bookingsName}})}>
+              <button className="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70 mr-4  transition-colors duration-300" onClick={() => navigate("/bookings", {state: {name: bookingsName}})}>
                 Bookings
               </button>
-              <button class="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70  transition-colors duration-300" onClick={() => navigate("/progress", {state: {name: "Bookings In Progress"}})}>
+              <button className="block mt-4 inline-block mt-0 text-[#F1F7ED] hover:text-[#F1F7ED]/70  transition-colors duration-300" onClick={() => navigate("/progress", {state: {name: "Bookings In Progress"}})}>
                 In Progress
               </button>
             </div>
             <div className='mr-4'>
-              <span class="font-semibold text-xl tracking-tight text-[#FCFFFB] mr-6">Home</span>
+              <span className="font-semibold text-xl tracking-tight text-[#FCFFFB] mr-6">Home</span>
               <button className='text-md mr-2 bg-[#FCFFFB] text-primary rounded-xl px-4 py-0.5 rounded-full hover:bg-[#FCFFFB]/80  transition-colors duration-300' onClick={() => logout().then(navigate("/"))}>Log Out</button>
             </div>
           </div>
@@ -49,16 +50,12 @@ const Home = () => {
       </div>
       <div className='row-span-10 bg-secondary grid grid-cols-4'>
         <div className='my-8 mx-20 col-span-3 bg-white flex'>
-          <div className='m-auto'>
-            <div className='bg-white'>
-              Map placeholder
-            </div>
-          </div>
+          <CustomMap />
         </div>
 
         <div className='flex'>
           <div className='m-auto'>
-            <button className='mr-16 bg-[#FCFFFB] text-primary rounded-xl w-60 h-12 rounded-full hover:bg-[#FCFFFB]/80  transition-colors duration-300' onClick={() => navigate("/map", {state: {role: "Helper"}})}>
+            <button className='mr-16 bg-[#FCFFFB] text-primary rounded-xl w-60 h-12 rounded-full hover:bg-[#FCFFFB]/80  transition-colors duration-300' onClick={() => navigate("/map", {state: {role: "Helped"}})}>
               See Map
             </button>
           </div>
