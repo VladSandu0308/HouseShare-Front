@@ -11,7 +11,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 const MapPage = () => {
   const navigate = useNavigate();
   const {state} = useLocation();
-  const [showPopup, setShowPopup] = useState(true);
+  
 
  
   return (
@@ -38,7 +38,7 @@ const MapPage = () => {
         
 
       <div className='bg-secondary my-4 mr-4 flex'>
-        <div className="text-white relative right-8 mt-16">
+        <div className="text-white relative right-8 mt-4">
           <img className='w-16' src={logo} alt='logo'/>
         </div>
 

@@ -1,12 +1,14 @@
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {format} from 'react-string-format';
 import Pagination from '../Pagination';
-import garbage from '../../pictures/garbage.png';
+
+import { server } from '../../services/axios';
+import useUser from '../../hooks/useUser';
 
 
 const MyBookings = () => {
-  const [bookings, setBokings] = useState([{id: 1}, {id: 2},{id: 3}, {id: 4},{id: 5}, {id: 2},{id: 1}, {id: 2},]);
+  const [bookings, setBokings] = useState([]);
   const [perPage, setPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -15,6 +17,12 @@ const MyBookings = () => {
   const currentBookings = bookings.slice(firstIndex, lastIndex);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
+
+  const {user} = useUser();
+
+  useEffect(() => {
+    server.get(format('/getHelpersBookings/{0}', user.user_id)).then((bookings) => setBokings(bookings.data));
+  }, []);
 
 
   return (
@@ -44,9 +52,7 @@ const MyBookings = () => {
                         <h5>Phone: </h5>
                     </div>
                     <div className='flex flex-row gap-4 my-auto mr-4'>
-                      <button className='w-9 h-9 m-auto rounded-full bg-secondary hover:bg-secondary/80 transition-colors duration-300' onClick={() => {}}>
-                        <img className='m-auto w-5' src={garbage} />
-                      </button>
+                      
                     </div>
                   </div>
                 

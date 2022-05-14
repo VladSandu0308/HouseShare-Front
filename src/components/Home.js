@@ -12,6 +12,8 @@ const Home = () => {
 
   const { user } = useUser();
 
+  console.log(user);
+
   async function handleLogout() {
 
     try {

@@ -12,9 +12,8 @@ const Login = () => {
   const [password, setPassword] = useState();
   const navigate = useNavigate();
 
-  const [error, setError] = React.useState('');
-  const [success, setSuccess] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const { setUser } = useUser();
 
@@ -30,7 +29,6 @@ const Login = () => {
     try {
       setError('');
       setSuccess('');
-      setLoading(true);
       await login(email, password);
       await server.post("/login", {email}).then(user => setUser(user.data));
       setSuccess('Good Login');
@@ -38,9 +36,6 @@ const Login = () => {
     } catch (e) {
       setError(e.message);
     }
-
-    setLoading(false);
-    
   };
 
   return (

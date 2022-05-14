@@ -1,7 +1,7 @@
 import React from 'react'
 import garbage from '../../pictures/garbage.png';
 
-const BipHelped = () => {
+const BipHelped = ({book}) => {
   return (
     <div class="accordion-body py-2 px-5 text-sm flex justify-between">
       

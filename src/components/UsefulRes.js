@@ -40,7 +40,7 @@ const UsefulRes = () => {
               (<Info />) :
               <>
                 {pageName == "Bookings In Progress" ? (
-                  <BookingsInProgress role={"Helped"} />
+                  <BookingsInProgress />
                 ) : <> 
                   {
                     pageName == "My Bookings" ? (

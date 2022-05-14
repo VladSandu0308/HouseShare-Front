@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {format} from 'react-string-format';
+import useUser from '../hooks/useUser';
+import { server } from '../services/axios';
 import BipHelped from './Helped/BipHelped';
 import BipHelper from './Helper/BipHelper';
 import Pagination from './Pagination';
 
-const BookingsInProgress = ({role}) => {
-  const [bookings, setBokings] = useState([{id: 1}, {id: 2},{id: 3}, {id: 4},{id: 5}, {id: 2},{id: 1}, {id: 2},]);
+const BookingsInProgress = () => {
+  const [bookings, setBokings] = useState([]);
   const [perPage, setPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -14,6 +16,16 @@ const BookingsInProgress = ({role}) => {
   const currentBookings = bookings.slice(firstIndex, lastIndex);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
+
+  const {user} = useUser();
+
+  console.log("ROle: " + user.user_id);
+
+  const path = user.role === "Helper" ? format(`/helpersgetBookingsInProgress/{0}`, user.user_id) : format(`/getHelpersBookings/{0}`, user.user_id);
+
+  useEffect(() => {
+    server.get(path).then((bookings) => setBokings(bookings.data));
+  }, []);
 
 
   return (
@@ -32,10 +44,10 @@ const BookingsInProgress = ({role}) => {
               <div id={format('id{0}', book.id)} class="accordion-collapse collapse" aria-labelledby="headingOne"
                 data-bs-parent="#accordionExample">
                   {
-                    role === "Helper" ? (
-                      <BipHelper />
+                    user.role === "Helper" ? (
+                      <BipHelper book={book}/>
                     ) : (
-                      <BipHelped />
+                      <BipHelped book={book}/>
                     )
                   }
                 
