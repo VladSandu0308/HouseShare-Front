@@ -1,11 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import DatePicker from "react-datepicker";
 import { addDays } from 'date-fns';
 
 import { server } from '../../services/axios';
 import useUser from '../../hooks/useUser';
+import useInput from '../../hooks/useInput';
 
-const PostHouse = () => {
+const PostHouse = ({setCoords}) => {
   const [endDate, setEndDate] = useState();
   const [startDate, setStartDate] = useState();
   const [capacity, setCapacity] = useState();
@@ -13,7 +14,12 @@ const PostHouse = () => {
   const [phone, setPhone] = useState();
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
   const {user} = useUser();
+  const address = useInput("");
+
+
+  console.log("Address: " + address.suggestions[0] )
 
   const handleSumbit = async (event) => {
     event.preventDefault();
@@ -76,7 +82,27 @@ const PostHouse = () => {
                 <label className='block text-black text-sm mb-2' for="name">
                   <strong>Location</strong> of accomodation
                 </label>
-                <input class="form" id="name" placeholder='Location' onChange={e => setLocation(e.target.value)}/>
+                <input class="form" id="name" placeholder='Location' onChange={e => {setLocation(e.target.value); address.onChange(e);}}/>
+                {
+                    address.suggestions?.length > 0 && (
+                      <div className='bg-white absolute w-96 py-4 px-1 z-10'>
+                        {
+                          address.suggestions.map((suggestion, index) => {
+                            return (
+                              <p className='cursor-pointer max-w-96 py-1 text-xs' key={index} onClick={() => {
+                                address.setValue(suggestion.place_name);
+                                address.setSuggestions([]);
+                                setLocation(suggestion.place_name);
+                                setCoords(suggestion.center);
+                              }} >
+                                {suggestion.place_name}
+                              </p>
+                            )
+                          })
+                        }
+                      </div>
+                    )
+                }
               </div>
               <div className='mb-8'>
                 <label className='block text-black text-sm mb-2' for="start">

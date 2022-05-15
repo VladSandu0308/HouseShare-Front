@@ -69,13 +69,13 @@ const Login = () => {
                 <label className='block text-primary text-sm mb-2' for="email">
                   Email
                 </label>
-                <input class="form" id="email" type="email" placeholder='Enter your email' onChange={e => setEmail(e.target.value)}/>
+                <input class="form px-2" id="email" type="email" placeholder='Enter your email' onChange={e => setEmail(e.target.value)}/>
               </div>
               <div className='mb-2'>
                 <label className='block text-primary text-sm mb-2' for="password">
                   Password
                 </label>
-                <input class="form appearance-none" id="password" type="password" placeholder='Enter your password' onChange={e => setPassword(e.target.value)}/>
+                <input class="form appearance-none px-2" id="password" type="password" placeholder='Enter your password' onChange={e => setPassword(e.target.value)}/>
               </div>
               
               <button className='mb-10 ml-4 text-sm underline font-sans text-primary hover:text-primary/80' onClick={() => navigate("/reset")}>
