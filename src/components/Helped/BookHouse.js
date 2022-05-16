@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import DatePicker from "react-datepicker";
 import { addDays } from 'date-fns';
 import useUser from '../../hooks/useUser';
 import { server } from '../../services/axios';
 
-const BookHouse = () => {
+const BookHouse = ({curLoc}) => {
+
+    
   const {user} = useUser();
 
   const [endDate, setEndDate] = useState();
@@ -15,6 +17,10 @@ const BookHouse = () => {
 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  useEffect(() => {
+    setLocation(curLoc)
+  }, [curLoc]);
 
   const handleSumbit = async (event) => {
     event.preventDefault();
@@ -70,7 +76,7 @@ const BookHouse = () => {
                 <label className='block text-black text-sm mb-2' for="name">
                   <strong>ID</strong> of accomodation
                 </label>
-                <input class="form" id="id" placeholder='Location' onChange={e => setLocation(e.target.value)}/>
+                <input value={curLoc} class="form" id="id" placeholder='Location' onChange={e => setLocation(curLoc)}/>
               </div>
               <div className='mb-8'>
                 <label className='block text-black text-sm mb-2' for="start">

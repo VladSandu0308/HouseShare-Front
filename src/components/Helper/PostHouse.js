@@ -6,7 +6,7 @@ import { server } from '../../services/axios';
 import useUser from '../../hooks/useUser';
 import useInput from '../../hooks/useInput';
 
-const PostHouse = ({setCoords}) => {
+const PostHouse = ({setCoords, coords}) => {
   const [endDate, setEndDate] = useState();
   const [startDate, setStartDate] = useState();
   const [capacity, setCapacity] = useState();
@@ -34,7 +34,9 @@ const PostHouse = ({setCoords}) => {
       ending_date,
       phone,
       sleeping_capacity: capacity,
-      helper_id: user.user_id
+      helper_id: user.user_id,
+      longitude: coords[0],
+      latitude: coords[1]
     });
 
     try {
@@ -46,7 +48,9 @@ const PostHouse = ({setCoords}) => {
         ending_date,
         phone,
         sleeping_capacity: capacity,
-        helper_id: user.user_id
+        helper_id: user.user_id,
+        longitude: coords[0],
+        latitude: coords[1]
       });
       setSuccess('Adress succesfully submited!');
 
@@ -82,7 +86,7 @@ const PostHouse = ({setCoords}) => {
                 <label className='block text-black text-sm mb-2' for="name">
                   <strong>Location</strong> of accomodation
                 </label>
-                <input class="form" id="name" placeholder='Location' onChange={e => {setLocation(e.target.value); address.onChange(e);}}/>
+                <input value={location} class="form" id="name" placeholder='Location' onChange={e => {setLocation(e.target.value); address.onChange(e);}}/>
                 {
                     address.suggestions?.length > 0 && (
                       <div className='bg-white absolute w-96 py-4 px-1 z-10'>

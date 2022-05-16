@@ -13,6 +13,7 @@ const MapPage = () => {
   const {state} = useLocation();
 
   const [coords, setCoords] = useState([0, 0]);
+  const [curLoc, setCurLoc] = useState("Alege o locatie!");
  
   return (
     <div className='grid grid-cols-2 w-screen h-screen bg-primary'>
@@ -20,7 +21,7 @@ const MapPage = () => {
       <div className='bg-white my-4 ml-4 flex'>
         <div className='bg-gray-400 w-full h-full relative'>
 
-          <CustomMap coords={coords}/>
+          <CustomMap coords={coords} setCurLoc={setCurLoc}/>
 
           <div className='w-12 h-12 ml-2 mt-2 absolute inset-0 rounded-full bg-secondary shadow-3xl flex z-10'>
               <button className='w-9 h-9 m-auto rounded-full bg-[#FCFFFB] hover:bg-[#FCFFFB]/80 transition-colors duration-300' onClick={() => navigate("/home")}>
@@ -45,9 +46,9 @@ const MapPage = () => {
         <div className='m-auto'>
           {
             state.role == "Helper" ? (
-              <PostHouse setCoords={setCoords}/>
+              <PostHouse setCoords={setCoords} coords={coords}/>
             ) : (
-              <BookHouse />
+              <BookHouse curLoc={curLoc}/>
             )
           }
         </div>
