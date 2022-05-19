@@ -36,8 +36,8 @@ const BipHelped = ({book}) => {
           <h5>End Date: {book.ending_date.slice(0,10)}</h5>
       </div>
       <div className='flex flex-col my-auto gap-1'>
-          <h5>Status: {book.status} </h5>
-          <h5>Phone: {book.phone} </h5>
+          <h5>Helper's name: {book.name} </h5>
+          <h5>Helper's phone: {book.phone} </h5>
           <h5>Location:  {book.address}</h5>
       </div>
       <div className='flex flex-row gap-4 my-auto mr-4'>

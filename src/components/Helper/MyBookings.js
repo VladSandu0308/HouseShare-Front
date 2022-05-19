@@ -35,7 +35,7 @@ const MyBookings = () => {
                 <button class="accordion-button collapsed relative flex items-center w-full py-4 px-5 text-base text-gray-800 text-left bg-white border-0 rounded-none transition focus:outline-none;"
                   type="button" data-bs-toggle="collapse" data-bs-target={format('#id{0}', book.connections_id)} aria-expanded="false"
                   aria-controls="collapseOne">
-                  {book.connections_id}
+                  Connection {book.connections_id} - Location: {book.address}
                 </button>
               </h2>
               <div id={format('id{0}', book.connections_id)} class="accordion-collapse collapse" aria-labelledby="headingOne"
@@ -46,10 +46,11 @@ const MyBookings = () => {
                         
                         <h5>Start Date: {book.starting_date.slice(0,10)}</h5>
                         <h5>End Date: {book.ending_date.slice(0,10)}</h5>
+                        <h5>Helped's name: {book.name}</h5>
                     </div>
                     <div className='flex flex-col my-auto gap-1'>
                         <h5>Location: {book.address} </h5>
-                        <h5>Phone: {book.phone}</h5>
+                        <h5>Helped's phone number: {book.phone}</h5>
                     </div>
                     <div className='flex flex-row gap-4 my-auto mr-4'>
                       
