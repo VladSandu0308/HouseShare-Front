@@ -20,8 +20,6 @@ const BookingsInProgress = () => {
 
   const {user} = useUser();
 
-  console.log("ROle: " + user.user_id);
-
   const path = user.role === "Helper" ? format(`/helpersgetBookingsInProgress/{0}`, user.user_id) : format(`/helpedBookingsInProgress/{0}`, user.user_id);;
 
   useEffect(() => {
@@ -42,7 +40,7 @@ const BookingsInProgress = () => {
                 <button class="accordion-button collapsed relative flex items-center w-full py-4 px-5 text-base text-gray-800 text-left bg-white border-0 rounded-none transition focus:outline-none;"
                   type="button" data-bs-toggle="collapse" data-bs-target={format('#id{0}', book.connections_id)} aria-expanded="false"
                   aria-controls="collapseOne">
-                  {book.connections_id}
+                  Connection {book.connections_id} - Location: {book.address}
                 </button>
               </h2>
               <div id={format('id{0}', book.connections_id)} class="accordion-collapse collapse" aria-labelledby="headingOne"

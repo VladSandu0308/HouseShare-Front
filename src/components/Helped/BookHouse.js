@@ -48,7 +48,7 @@ const BookHouse = ({curLoc}) => {
       setSuccess('Book request succesfully submited!');
 
     } catch (e) {
-      setError(e.message);
+      setError(e.response.data.message);
       console.log("Error: " + e);
     }
 
