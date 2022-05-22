@@ -23,5 +23,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Load In Swarm
-      run: curl -XPOST http://141.85.0.105:9000/api/webhooks/5c17a1d8-f5e2-4c14-85d7-ec7849bce3da
+      run: curl -XPOST http://localhost:9000/api/webhooks/c4a403ae-bac5-4983-8ecd-e2c55edcc26d
     
